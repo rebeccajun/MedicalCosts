@@ -1,28 +1,20 @@
 # MedicalCosts
 # Insurance Data Analysis
 ---
-title: "Insurance Data Analysis"
-author: "Rebecca Jun"
-date: "Spring 2020"
-output:
-  html_document: default
-  pdf_document: default
----
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 ## Introduction
-  The purpose of this data project is to explore variables that may influence medical costs. This data analysis will be conducted by using an insurance data set from [Kaggle](www.kaggle.com/mirichoi0218/insurance). Some questions that will be explored include: 1.) How are variables like smoking status, age, gender, body mass index, and one’s location in the United States associated with health care costs? 2.) Which explanatory variable has the most impact on medical costs? 3.) Can health care costs be predicted given these variables? In order to answer these questions, a multiple linear regression and logistic regression will be conducted along with additional data analysis methods.
+The purpose of this data project is to explore variables that may influence medical costs. This data analysis will be conducted by using an insurance data set from [Kaggle](www.kaggle.com/mirichoi0218/insurance). Some questions that will be explored include: 1.) How are variables like smoking status, age, gender, body mass index, and one’s location in the United States associated with health care costs? 2.) Which explanatory variable has the most impact on medical costs? 3.) Can health care costs be predicted given these variables? In order to answer these questions, a multiple linear regression and logistic regression will be conducted along with additional data analysis methods.
 ```{r}
 insurance <- read.csv("insurance.csv")
 summary(insurance)
 ```
 ## Data Description
-  The data used in this analysis is the Kaggle Medical Cost Data Set. This data set contains 1,338 observations of beneficiaries enrolled in an insurance plan. There are 6 explanatory variables: age, sex (male or female), BMI, number of children or dependents, smoking status (yes or no), and US region (northeast, southeast, southwest, or northwest). Age, BMI, and number of children are continuous explanatory variables. Sex, smoking status, and US region are categorical explanatory variables. The explained or response variable is charges, i.e. individual medical costs billed by health insurance in one year, and it is measured in US dollars. 
+The data used in this analysis is the Kaggle Medical Cost Data Set. This data set contains 1,338 observations of beneficiaries enrolled in an insurance plan. There are 6 explanatory variables: age, sex (male or female), BMI, number of children or dependents, smoking status (yes or no), and US region (northeast, southeast, southwest, or northwest). Age, BMI, and number of children are continuous explanatory variables. Sex, smoking status, and US region are categorical explanatory variables. The explained or response variable is charges, i.e. individual medical costs billed by health insurance in one year, and it is measured in US dollars. 
   
 ### Data Preparation.
-  By using the original variables of the data set, four additional variables were created in order to gain a better understanding of the data set; bmi_status, age_class, charges_class, and smoker_binary were created. The variable bmi_status was created by converting bmi into a categorical variable that consists of underweight, healthy, overweight, and obese according to the criteria in Table 1. The variable age_class was created by converting age into a categorical variable consisting of young_adult (18-34), adult (35-50), and senior (>=51). 
+By using the original variables of the data set, four additional variables were created in order to gain a better understanding of the data set; bmi_status, age_class, charges_class, and smoker_binary were created. The variable bmi_status was created by converting bmi into a categorical variable that consists of underweight, healthy, overweight, and obese according to the criteria in Table 1. The variable age_class was created by converting age into a categorical variable consisting of young_adult (18-34), adult (35-50), and senior (>=51). 
 
 #### BMI Status  
 | **Body Mass Index (BMI)** | **Weight Status** |
@@ -42,7 +34,7 @@ insurance$bmi_status <- factor(insurance$bmi_status, order = TRUE,
                                   levels <- c("underweight", "healthy", "overweight", "obese"))
 ```
 
-  Furthermore, charges_class was created by converting charges into a categorical variable consisting of low (charges less than mean value $13,270) and high (charges greater than mean). The variable smoker_binary was created by converting smoker into a binary variable, where being a smoker equals 1 and 0 otherwise; smoker_binary will be utilized in the logistic regression section. 
+Furthermore, charges_class was created by converting charges into a categorical variable consisting of low (charges less than mean value $13,270) and high (charges greater than mean). The variable smoker_binary was created by converting smoker into a binary variable, where being a smoker equals 1 and 0 otherwise; smoker_binary will be utilized in the logistic regression section. 
   
  #### Age Class
 ```{r, include=FALSE}
@@ -55,8 +47,6 @@ insurance$age_class <- factor(insurance$age_class, order = TRUE,
 ```
 
 ## Including Plots
-
-You can also embed plots, for example:
 
 ```{r, echo=FALSE}
 x <- insurance$charges
