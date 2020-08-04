@@ -47,7 +47,8 @@ insurance$age_class <- factor(insurance$age_class, order = TRUE,
 ```
 
 ## Including Plots
-
+![plot 1](https://github.com/rebeccajun/MedicalCosts/blob/master/Rplot01.png)
+![plot 1](https://github.com/rebeccajun/MedicalCosts/blob/master/Rplot02.png)
 ```{r, echo=FALSE}
 x <- insurance$charges
 h<-hist(x, breaks=10, col="pink", xlab="Charges in $USD",
